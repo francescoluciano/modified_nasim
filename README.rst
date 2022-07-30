@@ -10,23 +10,23 @@ Installation
 ------------
 
 1. Clone the repository:
-  $ git clone https://github.com/francescoluciano/modified_nasim.git
+  ``$ git clone https://github.com/francescoluciano/modified_nasim.git``
 
 2. Install the requirements:
-  $ pip3 install -r requirements.txt
+  ``$ pip3 install -r requirements.txt``
 
 3. Install python3-tk:
-  $ sudo apt install python3-tk
+  ``$ sudo apt install python3-tk``
 
 
 Quick start
 -----------
 
-To try the ppo_agent with the tiny scenario just move to the `/nasim/agents` directory and type
+To try the ppo_agent with the tiny scenario just move to the ``/nasim/agents`` directory and type
 
-	$ python ppo_agent.py
+	$ ``python ppo_agent.py``
 
-Look at the code of `ppo_agent.py` to change the parameters.
+Look at the code of ``ppo_agent.py`` to change the parameters.
 
 Documentation
 -------------
