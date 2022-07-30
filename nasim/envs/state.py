@@ -143,7 +143,7 @@ class State:
             obs.from_state(self)
             return obs
 
-        if action.is_noop():
+        if action.is_wrongop():
             return obs
 
         if not action_result.success:

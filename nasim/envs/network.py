@@ -56,7 +56,7 @@ class Network:
 
         next_state = state.copy()
 
-        if action.is_noop():
+        if action.is_wrongop():
             return next_state, ActionResult(True)
 
         if not state.host_reachable(action.target) \
