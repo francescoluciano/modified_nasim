@@ -18,6 +18,9 @@ Installation
 3. Install python3-tk:
   ``$ sudo apt install python3-tk``
 
+4. Install nasim
+  ``pip3 install .`` 
+
 
 Quick start
 -----------
