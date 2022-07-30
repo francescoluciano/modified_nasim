@@ -565,7 +565,7 @@ class ActionResult:
     success : bool
         True if exploit/scan was successful, False otherwise
     value : float
-        value gained from action. Is the value of the host if successfuly
+        value gained from action. Is the value of the host if successfully
         exploited, otherwise 0
     services : dict
         services identified by action.
@@ -629,7 +629,13 @@ class ActionResult:
             host addresses discovered for first time by action (default=None)
         """
         self.success = success
-        self.value = value
+        #self.value = value
+        if value > 0: #FL # If value > 0, it means that a device has been compromised
+            self.value = value
+        elif success == True and access != None: # Otherwise, if we successfully complete an exploit
+            self.value = 3
+        else: # Otherwise, no immediate reward
+            self.value = 0.0
         self.services = {} if services is None else services
         self.os = {} if os is None else os
         self.processes = {} if processes is None else processes

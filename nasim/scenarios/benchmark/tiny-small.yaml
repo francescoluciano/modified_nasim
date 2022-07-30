@@ -38,37 +38,37 @@ exploits:
     service: ssh
     os: linux
     prob: 0.9
-    cost: 15
+    cost: 2
     access: user
   e_ftp:
     service: ftp
     os: windows
     prob: 0.6
-    cost: 10
+    cost: 1
     access: root
   e_http:
     service: http
     os: None
     prob: 0.9
-    cost: 15
+    cost: 2
     access: user
 privilege_escalation:
   pe_tomcat:
     process: tomcat
     os: linux
     prob: 1.0
-    cost: 10
+    cost: 1
     access: root
   pe_daclsvc:
     process: daclsvc
     os: windows
     prob: 1.0
-    cost: 10
+    cost: 1
     access: root
-service_scan_cost: 10
-os_scan_cost: 10
-subnet_scan_cost: 10
-process_scan_cost: 10
+service_scan_cost: 1
+os_scan_cost: 1
+subnet_scan_cost: 1
+process_scan_cost: 1
 host_configurations:
   (1, 0):
     os: linux
