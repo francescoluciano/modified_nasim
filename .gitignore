@@ -1,0 +1,4 @@
+# Ignoring runs and test directories
+/runs/
+/test/
+/nasim/runs
