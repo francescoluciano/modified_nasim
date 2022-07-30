@@ -20,7 +20,6 @@ keyring>=21.2.1
 kiwisolver>=1.2.0
 MarkupSafe>=1.1.1
 matplotlib>=3.3.0
-nasim>=0.9.1
 networkx>=2.4
 numpy>=1.21.0
 packaging>=20.4
