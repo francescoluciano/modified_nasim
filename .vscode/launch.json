@@ -10,8 +10,8 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "justMyCode": true,
-            "args": ["-p", "-g", "tiny-small"]
+            "justMyCode": false,
+            "args": ["-p", "tiny-small"]
         }
     ]
 }
