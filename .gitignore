@@ -2,3 +2,9 @@
 /runs/
 /test/
 /nasim/runs
+
+# Ignoring vscode specific files
+/.vscode/
+
+# Ignoring policy files
+/*.zip
