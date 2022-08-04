@@ -235,7 +235,7 @@ class HostVector:
             if self.is_running_service(action.service) and \
                (action.os is None or self.is_running_os(action.os)):
                 # service and os is present so exploit is successful
-                #value = 0 if next_state.compromised == True else 3
+                #value = 0
                 value = 0 if next_state.compromised == True else 3
                 next_state.compromised = True
                 if not self.access == AccessLevel.ROOT:
