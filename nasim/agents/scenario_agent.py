@@ -16,17 +16,17 @@ if __name__ == "__main__":
 
     # Change the name of the scenario here to change
     # the testing scenario
-    env = gym.make("nasim:Tiny-v2")
+    env = nasim.generate(num_hosts=3, num_services=3, fully_obs=True, flat_actions=False)
 
     # Build the PPO algorithm. Change the timesteps here.
     # Change the name of the saved policy.
     model = PPO("MlpPolicy", env, verbose=1)
-    model.learn(total_timesteps=300000)
-    model.save("tiny_test")
+    model.learn(total_timesteps=700000)
+    model.save("first_generated_test")
 
     del model # remove to demonstrate saving and loading
 
-    model = PPO.load("tiny_test")
+    model = PPO.load("first_generated_test")
 
     # Init the environment
     obs = env.reset()
