@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     # Build the PPO algorithm. Change the timesteps here.
     # Change the name of the saved policy.
-    model = PPO("MlpPolicy", env, verbose=1)
+    model = PPO("MlpPolicy", env, verbose=1, ent_coef=0.05)
     model.learn(total_timesteps=5000000)
     model.save("tiny_small_test")
 
