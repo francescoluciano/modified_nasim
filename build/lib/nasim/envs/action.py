@@ -535,7 +535,7 @@ class WrongOp(Action):
     def __init__(self, *args, **kwargs):
         super().__init__(name="wrongop",
                          target=(1, 0),
-                         cost=1, #Before was 0. FL
+                         cost=2, #Before was 0. FL
                          prob=1.0,
                          req_access=AccessLevel.NONE)
 
