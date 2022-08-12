@@ -70,8 +70,8 @@ class ScenarioGenerator:
                  num_processes=2,
                  num_exploits=None,
                  num_privescs=None,
-                 r_sensitive=10,
-                 r_user=10,
+                 r_sensitive=100, #FL this was 10
+                 r_user=100, #FL this was 10
                  exploit_cost=1,
                  exploit_probs=1.0,
                  privesc_cost=1,
@@ -85,9 +85,9 @@ class ScenarioGenerator:
                  alpha_V=2.0,
                  lambda_V=1.0,
                  restrictiveness=5,
-                 random_goal=False,
-                 base_host_value=1,
-                 host_discovery_value=1,
+                 random_goal=True,  #FL it was False
+                 base_host_value=5, #FL this was 1
+                 host_discovery_value=5, #FL this was 1
                  seed=None,
                  name=None,
                  step_limit=None,
