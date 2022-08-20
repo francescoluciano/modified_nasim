@@ -3,7 +3,7 @@ Network Attack Simulator - Modified by Francesco Lucianò
 
 |docs|
 
-Network Attack Simulator (NASim) is a simulated computer network complete with vulnerabilities, scans and exploits designed to be used as a testing environment for AI agents and planning techniques applied to network penetration testing. This modified version implement the `PPO algorithm from stable_baselines3 <https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html>`_
+Network Attack Simulator (NASim) is a simulated computer network complete with vulnerabilities, scans and exploits designed to be used as a testing environment for AI agents and planning techniques applied to network penetration testing. This modified version implements the `PPO algorithm from stable_baselines3 <https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html>`_
 
 
 Installation
