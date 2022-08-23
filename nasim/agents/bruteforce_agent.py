@@ -16,6 +16,7 @@ $ python bruteforce_agent.py --help
 from itertools import product
 
 import nasim
+import numpy as np
 
 LINE_BREAK = "-"*60
 
@@ -108,17 +109,35 @@ if __name__ == "__main__":
                         help="Use Parameterised action space")
     parser.add_argument("-f", "--box_obs", action="store_true",
                         help="Use 2D observation space")
+    parser.add_argument("-r", "--runs", type=int, default=1,
+                        help="number of random runs to perform (default=1)")
     args = parser.parse_args()
 
-    nasimenv = nasim.make_benchmark(
-        args.env_name,
-        args.seed,
-        not args.partially_obs,
-        not args.param_actions,
-        not args.box_obs
-    )
-    if not args.param_actions:
-        print(nasimenv.action_space.n)
-    else:
-        print(nasimenv.action_space.nvec)
-    run_bruteforce_agent(nasimenv)
+    num_hosts = 12      #FL
+    num_services = 8    #FL
+    run_steps = []
+    run_rewards = []
+    run_goals = 0
+    for i in range(args.runs):
+        env = nasim.generate(num_hosts=num_hosts, num_services=num_services, fully_obs=True, flat_actions=False)    #FL
+        steps, reward, done = run_bruteforce_agent(env, verbose=False)
+        run_steps.append(steps)
+        run_rewards.append(reward)
+        run_goals += int(done)
+
+        if args.runs > 1:
+            print(f"Run {i}:")
+            print(f"\tSteps = {steps}")
+            print(f"\tReward = {reward}")
+            print(f"\tGoal reached = {done}")
+
+    run_steps = np.array(run_steps)
+    run_rewards = np.array(run_rewards)
+
+    print(LINE_BREAK)
+    print("Random Agent Runs Complete")
+    print(LINE_BREAK)
+    print(f"Mean steps = {run_steps.mean():.2f} +/- {run_steps.std():.2f}")
+    print(f"Mean rewards = {run_rewards.mean():.2f} "
+          f"+/- {run_rewards.std():.2f}")
+    print(f"Goals reached = {run_goals} / {args.runs}")
