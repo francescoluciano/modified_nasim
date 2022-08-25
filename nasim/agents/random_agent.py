@@ -78,7 +78,7 @@ if __name__ == "__main__":
     run_steps = []
     run_rewards = []
     run_goals = 0
-    num_hosts = 6       #FL
+    num_hosts = 4       #FL
     num_services = 8    #FL
     for i in range(args.runs):
         env = nasim.generate(num_hosts=num_hosts, num_services=num_services, fully_obs=True, flat_actions=False)    #FL

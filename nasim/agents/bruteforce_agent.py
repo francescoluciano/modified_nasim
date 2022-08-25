@@ -113,7 +113,7 @@ if __name__ == "__main__":
                         help="number of random runs to perform (default=1)")
     args = parser.parse_args()
 
-    num_hosts = 12      #FL
+    num_hosts = 4      #FL
     num_services = 8    #FL
     run_steps = []
     run_rewards = []
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     run_rewards = np.array(run_rewards)
 
     print(LINE_BREAK)
-    print("Random Agent Runs Complete")
+    print("Bruteforce Agent Runs Complete")
     print(LINE_BREAK)
     print(f"Mean steps = {run_steps.mean():.2f} +/- {run_steps.std():.2f}")
     print(f"Mean rewards = {run_rewards.mean():.2f} "
