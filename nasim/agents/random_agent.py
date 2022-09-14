@@ -78,12 +78,10 @@ if __name__ == "__main__":
     run_steps = []
     run_rewards = []
     run_goals = 0
+    num_hosts = 4       #FL
+    num_services = 8    #FL
     for i in range(args.runs):
-        env = nasim.make_benchmark(args.env_name,
-                                   seed,
-                                   not args.partially_obs,
-                                   not args.param_actions,
-                                   not args.box_obs)
+        env = nasim.generate(num_hosts=num_hosts, num_services=num_services, fully_obs=True, flat_actions=False)    #FL
         steps, reward, done = run_random_agent(env, verbose=False)
         run_steps.append(steps)
         run_rewards.append(reward)

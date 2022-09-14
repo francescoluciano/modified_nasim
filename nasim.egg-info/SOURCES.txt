@@ -10,12 +10,12 @@ nasim.egg-info/not-zip-safe
 nasim.egg-info/requires.txt
 nasim.egg-info/top_level.txt
 nasim/agents/__init__.py
+nasim/agents/a2c_agent.py
 nasim/agents/bruteforce_agent.py
-nasim/agents/dqn_agent.py
 nasim/agents/keyboard_agent.py
-nasim/agents/ql_agent.py
-nasim/agents/ql_replay_agent.py
+nasim/agents/ppo_agent.py
 nasim/agents/random_agent.py
+nasim/agents/scenario_agent.py
 nasim/envs/__init__.py
 nasim/envs/action.py
 nasim/envs/environment.py

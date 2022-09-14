@@ -38,7 +38,7 @@ exploits:
     service: ssh
     os: linux
     prob: 0.9
-    cost: 2
+    cost: 1
     access: user
   e_ftp:
     service: ftp
@@ -50,7 +50,7 @@ exploits:
     service: http
     os: None
     prob: 0.9
-    cost: 2
+    cost: 1
     access: user
 privilege_escalation:
   pe_tomcat:

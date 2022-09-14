@@ -6,6 +6,8 @@ import gym
 import numpy as np
 from gym import spaces
 
+import nasim.scenarios.generator
+
 from .state import State
 from .render import Viewer
 from .network import Network
@@ -151,7 +153,7 @@ class NASimEnv(gym.Env):
             auxiliary information regarding step
             (see :func:`nasim.env.action.ActionResult.info`)
         """
-        self.update_actions()
+        #self.update_actions()
         next_state, obs, reward, done, info = self.generative_step(
             self.current_state,
             action
@@ -169,8 +171,12 @@ class NASimEnv(gym.Env):
         if not done and self.scenario.step_limit is not None:
             done = self.steps >= self.scenario.step_limit
 
-        if self.steps >= self.scenario.step_limit:
-            reward = reward - 100
+        if done:
+        #     scenario_generator = nasim.scenarios.generator.ScenarioGenerator() #FL
+        #     scenario = scenario_generator.generate(num_hosts=3, num_services=3, r_sensitive=100)
+        #     print(type(scenario))
+        #     self.__init__(scenario=scenario, flat_actions=self.flat_actions, fully_obs=self.fully_obs, flat_obs=self.flat_obs) #FL
+            self.render() #FL
 
         self.update_actions()
 
@@ -204,7 +210,7 @@ class NASimEnv(gym.Env):
         """
         if not isinstance(action, Action):
             #print("Action type:" + str(type(action)))
-            self.update_actions()
+            #self.update_actions()
             #print(self.action_space.actions)
             action = self.action_space.get_action(action, self.current_state) #FL currentstate
 
