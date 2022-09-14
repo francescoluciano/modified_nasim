@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     del model # remove to demonstrate saving and loading
 
-    model = PPO.load("generated_6_8_test", num_hosts=num_hosts, num_services=num_services)
+    model = PPO.load("generated_0_8_test", num_hosts=num_hosts, num_services=num_services)
 
     # Init the environment
     obs = env.reset()
