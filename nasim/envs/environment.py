@@ -9,7 +9,7 @@ from gym import spaces
 import nasim.scenarios.generator
 
 from .state import State
-from .render import Viewer
+#from .render import Viewer
 from .network import Network
 from .observation import Observation
 from .action import Action, FlatActionSpace, ParameterisedActionSpace
@@ -171,12 +171,12 @@ class NASimEnv(gym.Env):
         if not done and self.scenario.step_limit is not None:
             done = self.steps >= self.scenario.step_limit
 
-        if done:
-        #     scenario_generator = nasim.scenarios.generator.ScenarioGenerator() #FL
-        #     scenario = scenario_generator.generate(num_hosts=3, num_services=3, r_sensitive=100)
-        #     print(type(scenario))
-        #     self.__init__(scenario=scenario, flat_actions=self.flat_actions, fully_obs=self.fully_obs, flat_obs=self.flat_obs) #FL
-            self.render() #FL
+        # if done:
+        # #     scenario_generator = nasim.scenarios.generator.ScenarioGenerator() #FL
+        # #     scenario = scenario_generator.generate(num_hosts=3, num_services=3, r_sensitive=100)
+        # #     print(type(scenario))
+        # #     self.__init__(scenario=scenario, flat_actions=self.flat_actions, fully_obs=self.fully_obs, flat_obs=self.flat_obs) #FL
+        #     self.render() #FL
 
         self.update_actions()
 
@@ -253,139 +253,139 @@ class NASimEnv(gym.Env):
         """
         return State.generate_initial_state(self.network)
 
-    def render(self, mode="readable", obs=None):
-        """Render observation.
+    # def render(self, mode="readable", obs=None):
+    #     """Render observation.
 
-        See render module for more details on modes and symbols.
+    #     See render module for more details on modes and symbols.
 
-        Parameters
-        ----------
-        mode : str
-            rendering mode
-        obs : Observation or numpy.ndarray, optional
-            the observation to render, if None will render last observation.
-            If numpy.ndarray it must be in format that matches Observation
-            (i.e. ndarray returned by step method) (default=None)
-        """
-        if obs is None:
-            obs = self.last_obs
+    #     Parameters
+    #     ----------
+    #     mode : str
+    #         rendering mode
+    #     obs : Observation or numpy.ndarray, optional
+    #         the observation to render, if None will render last observation.
+    #         If numpy.ndarray it must be in format that matches Observation
+    #         (i.e. ndarray returned by step method) (default=None)
+    #     """
+    #     if obs is None:
+    #         obs = self.last_obs
 
-        if not isinstance(obs, Observation):
-            obs = Observation.from_numpy(obs, self.current_state.shape())
+    #     if not isinstance(obs, Observation):
+    #         obs = Observation.from_numpy(obs, self.current_state.shape())
 
-        if self._renderer is None:
-            self._renderer = Viewer(self.network)
+    #     if self._renderer is None:
+    #         self._renderer = Viewer(self.network)
 
-        if mode == "readable":
-            self._renderer.render_readable(obs)
-        else:
-            raise NotImplementedError(
-                "Please choose correct render mode from :"
-                f"{self.metadata['rendering.modes']}"
-            )
+    #     if mode == "readable":
+    #         self._renderer.render_readable(obs)
+    #     else:
+    #         raise NotImplementedError(
+    #             "Please choose correct render mode from :"
+    #             f"{self.metadata['rendering.modes']}"
+    #         )
 
-    def render_state(self, mode="readable", state=None):
-        """Render state.
+    # def render_state(self, mode="readable", state=None):
+    #     """Render state.
 
-        See render module for more details on modes and symbols.
+    #     See render module for more details on modes and symbols.
 
-        If mode = ASCI:
-            Machines displayed in rows, with one row for each subnet and
-            hosts displayed in order of id within subnet
+    #     If mode = ASCI:
+    #         Machines displayed in rows, with one row for each subnet and
+    #         hosts displayed in order of id within subnet
 
-        Parameters
-        ----------
-        mode : str
-            rendering mode
-        state : State or numpy.ndarray, optional
-            the State to render, if None will render current state
-            If numpy.ndarray it must be in format that matches State
-            (i.e. ndarray returned by generative_step method) (default=None)
-        """
-        if state is None:
-            state = self.current_state
+    #     Parameters
+    #     ----------
+    #     mode : str
+    #         rendering mode
+    #     state : State or numpy.ndarray, optional
+    #         the State to render, if None will render current state
+    #         If numpy.ndarray it must be in format that matches State
+    #         (i.e. ndarray returned by generative_step method) (default=None)
+    #     """
+    #     if state is None:
+    #         state = self.current_state
 
-        if not isinstance(state, State):
-            state = State.from_numpy(state,
-                                     self.current_state.shape(),
-                                     self.current_state.host_num_map)
+    #     if not isinstance(state, State):
+    #         state = State.from_numpy(state,
+    #                                  self.current_state.shape(),
+    #                                  self.current_state.host_num_map)
 
-        if self._renderer is None:
-            self._renderer = Viewer(self.network)
+    #     if self._renderer is None:
+    #         self._renderer = Viewer(self.network)
 
-        if mode == "readable":
-            self._renderer.render_readable_state(state)
-        else:
-            raise NotImplementedError(
-                "Please choose correct render mode from : "
-                f"{self.metadata['rendering.modes']}"
-            )
+    #     if mode == "readable":
+    #         self._renderer.render_readable_state(state)
+    #     else:
+    #         raise NotImplementedError(
+    #             "Please choose correct render mode from : "
+    #             f"{self.metadata['rendering.modes']}"
+    #         )
 
-    def render_action(self, action):
-        """Renders human readable version of action.
+    # def render_action(self, action):
+    #     """Renders human readable version of action.
 
-        This is mainly useful for getting a text description of the action
-        that corresponds to a given integer.
+    #     This is mainly useful for getting a text description of the action
+    #     that corresponds to a given integer.
 
-        Parameters
-        ----------
-        action : Action or int or list or NumpyArray
-            Action to render. If not Action object, then if using
-            flat actions this should be an int and if using non-flat actions
-            this should be an indexable array.
-        """
-        if not isinstance(action, Action):
-            action = self.action_space.get_action(action, self.current_state) #FL currentstate
-        print(action)
+    #     Parameters
+    #     ----------
+    #     action : Action or int or list or NumpyArray
+    #         Action to render. If not Action object, then if using
+    #         flat actions this should be an int and if using non-flat actions
+    #         this should be an indexable array.
+    #     """
+    #     if not isinstance(action, Action):
+    #         action = self.action_space.get_action(action, self.current_state) #FL currentstate
+    #     print(action)
 
-    def render_episode(self, episode, width=7, height=7):
-        """Render an episode as sequence of network graphs, where an episode
-        is a sequence of (state, action, reward, done) tuples generated from
-        interactions with environment.
+    # def render_episode(self, episode, width=7, height=7):
+    #     """Render an episode as sequence of network graphs, where an episode
+    #     is a sequence of (state, action, reward, done) tuples generated from
+    #     interactions with environment.
 
-        Parameters
-        ----------
-        episode : list
-            list of (State, Action, reward, done) tuples
-        width : int
-            width of GUI window
-        height : int
-            height of GUI window
-        """
-        if self._renderer is None:
-            self._renderer = Viewer(self.network)
-        self._renderer.render_episode(episode, width, height)
+    #     Parameters
+    #     ----------
+    #     episode : list
+    #         list of (State, Action, reward, done) tuples
+    #     width : int
+    #         width of GUI window
+    #     height : int
+    #         height of GUI window
+    #     """
+    #     if self._renderer is None:
+    #         self._renderer = Viewer(self.network)
+    #     self._renderer.render_episode(episode, width, height)
 
-    def render_network_graph(self, ax=None, show=False):
-        """Render a plot of network as a graph with hosts as nodes arranged
-        into subnets and showing connections between subnets. Renders current
-        state of network.
+    # def render_network_graph(self, ax=None, show=False):
+    #     """Render a plot of network as a graph with hosts as nodes arranged
+    #     into subnets and showing connections between subnets. Renders current
+    #     state of network.
 
-        Parameters
-        ----------
-        ax : Axes
-            matplotlib axis to plot graph on, or None to plot on new axis
-        show : bool
-            whether to display plot, or simply setup plot and showing plot
-            can be handled elsewhere by user
-        """
-        if self._renderer is None:
-            self._renderer = Viewer(self.network)
-        state = self.current_state
-        self._renderer.render_graph(state, ax, show)
+    #     Parameters
+    #     ----------
+    #     ax : Axes
+    #         matplotlib axis to plot graph on, or None to plot on new axis
+    #     show : bool
+    #         whether to display plot, or simply setup plot and showing plot
+    #         can be handled elsewhere by user
+    #     """
+    #     if self._renderer is None:
+    #         self._renderer = Viewer(self.network)
+    #     state = self.current_state
+    #     self._renderer.render_graph(state, ax, show)
 
-    def get_minimum_actions(self):
-        """Get the minimum number of actions required to reach the goal.
+    # def get_minimum_actions(self):
+    #     """Get the minimum number of actions required to reach the goal.
 
-        That is minimum number of actions to exploit all sensitive hosts on
-        the network starting from the initial state
+    #     That is minimum number of actions to exploit all sensitive hosts on
+    #     the network starting from the initial state
 
-        Returns
-        -------
-        int
-            minumum possible actions to reach goal
-        """
-        return self.network.get_minimal_steps()
+    #     Returns
+    #     -------
+    #     int
+    #         minumum possible actions to reach goal
+    #     """
+    #     return self.network.get_minimal_steps()
 
     def get_action_mask(self):
         """Get a vector mask for valid actions.
