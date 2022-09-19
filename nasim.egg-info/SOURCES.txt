@@ -23,7 +23,6 @@ nasim/envs/gym_env.py
 nasim/envs/host_vector.py
 nasim/envs/network.py
 nasim/envs/observation.py
-nasim/envs/render.py
 nasim/envs/state.py
 nasim/envs/utils.py
 nasim/scenarios/__init__.py
